@@ -94,5 +94,28 @@
     return $OpenFileDialog.FileName
     }
 
-Write-Host "In Progress"
+# create config folder
+New-Item -Path "$env:USERPROFILE\Documents" -Name "BFBC2" -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
+New-Item -Path "$env:USERPROFILE\OneDrive\Documents" -Name "BFBC2" -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
+Clear-Host
+# download and replace config files           
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Battlefield/Battlefield%20Bad%20Company%202/settings.ini" -File "$env:TEMP\settings.ini"
+Copy-Item -Path "$env:TEMP\settings.ini" -Destination "$env:USERPROFILE\Documents\BFBC2\settings.ini" -Force -ErrorAction SilentlyContinue | Out-Null
+Copy-Item -Path "$env:TEMP\settings.ini" -Destination "$env:USERPROFILE\OneDrive\Documents\BFBC2\settings.ini" -Force -ErrorAction SilentlyContinue | Out-Null
+Remove-Item -Path "$env:TEMP\settings.ini" -Force -ErrorAction SilentlyContinue | Out-Null
+Clear-Host
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Battlefield/Battlefield%20Bad%20Company%202/GameSettings.ini" -File "$env:TEMP\GameSettings.ini"
+Copy-Item -Path "$env:TEMP\GameSettings.ini" -Destination "$env:USERPROFILE\Documents\BFBC2\GameSettings.ini" -Force -ErrorAction SilentlyContinue | Out-Null
+Copy-Item -Path "$env:TEMP\GameSettings.ini" -Destination "$env:USERPROFILE\OneDrive\Documents\BFBC2\GameSettings.ini" -Force -ErrorAction SilentlyContinue | Out-Null
+Remove-Item -Path "$env:TEMP\GameSettings.ini" -Force -ErrorAction SilentlyContinue | Out-Null
+Clear-Host
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Battlefield/Battlefield%20Bad%20Company%202/GameSettings.bin" -File "$env:TEMP\GameSettings.bin"
+Copy-Item -Path "$env:TEMP\GameSettings.bin" -Destination "$env:USERPROFILE\Documents\BFBC2\GameSettings.bin" -Force -ErrorAction SilentlyContinue | Out-Null
+Copy-Item -Path "$env:TEMP\GameSettings.bin" -Destination "$env:USERPROFILE\OneDrive\Documents\BFBC2\GameSettings.bin" -Force -ErrorAction SilentlyContinue | Out-Null
+Remove-Item -Path "$env:TEMP\GameSettings.bin" -Force -ErrorAction SilentlyContinue | Out-Null
+Clear-Host
+Write-Host "Battlefield Bad Company 2 config applied . . ."
+Write-Host ""
+Write-Host "https://veniceunleashed.net/project-rome"
 $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+Start-Process https://veniceunleashed.net/project-rome
