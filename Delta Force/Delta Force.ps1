@@ -101,17 +101,17 @@ $ConfigFolder1 = "$Folder1\Game\DeltaForce\Saved\Config"
 # create config folder
 New-Item -Path "$ConfigFolder1" -Name "WindowsClient" -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
 # download and replace config files
-Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Delta%20Force/Delta%20Force/Engine.ini" -File "$ConfigFolder1\Engine.ini"
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Delta%20Force/Delta%20Force/Engine.ini" -File "$ConfigFolder1\WindowsClient\Engine.ini"
 Clear-Host
-Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Delta%20Force/Delta%20Force/GPSystemSetting.ini" -File "$ConfigFolder1\GPSystemSetting.ini"
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Delta%20Force/Delta%20Force/GPSystemSetting.ini" -File "$ConfigFolder1\WindowsClient\GPSystemSetting.ini"
 Clear-Host
-Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Delta%20Force/Delta%20Force/GameUserSettings.ini" -File "$ConfigFolder1\GameUserSettings.ini"
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Delta%20Force/Delta%20Force/GameUserSettings.ini" -File "$ConfigFolder1\WindowsClient\GameUserSettings.ini"
 Clear-Host
-Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Delta%20Force/Delta%20Force/Input.ini" -File "$ConfigFolder1\Input.ini"
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Delta%20Force/Delta%20Force/Input.ini" -File "$ConfigFolder1\WindowsClient\Input.ini"
 Clear-Host
-Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Delta%20Force/Delta%20Force/UserSystemSetting.ini" -File "$ConfigFolder1\UserSystemSetting.ini"
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Delta%20Force/Delta%20Force/UserSystemSetting.ini" -File "$ConfigFolder1\WindowsClient\UserSystemSetting.ini"
 Clear-Host
-Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Delta%20Force/Delta%20Force/UserSystemSettingHD.ini" -File "$ConfigFolder1\UserSystemSettingHD.ini"
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Delta%20Force/Delta%20Force/UserSystemSettingHD.ini" -File "$ConfigFolder1\WindowsClient\UserSystemSettingHD.ini"
 Clear-Host
 Write-Host "Delta Force config applied . . ."
 Write-Host ""
