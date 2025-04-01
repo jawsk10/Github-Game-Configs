@@ -94,5 +94,26 @@
     return $OpenFileDialog.FileName
     }
 
-Write-Host "In Progress"
+# pick install folder
+Write-Host "Select Delta Force install folder:"
+$Folder1 = Show-ModernFilePicker -Mode Folder
+$ConfigFolder1 = "$Folder1\Game\DeltaForce\Saved\Config"
+# create config folder
+New-Item -Path "$ConfigFolder1" -Name "WindowsClient" -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
+# download and replace config files
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Delta%20Force/Delta%20Force/Engine.ini" -File "$ConfigFolder1\Engine.ini"
+Clear-Host
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Delta%20Force/Delta%20Force/GPSystemSetting.ini" -File "$ConfigFolder1\GPSystemSetting.ini"
+Clear-Host
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Delta%20Force/Delta%20Force/GameUserSettings.ini" -File "$ConfigFolder1\GameUserSettings.ini"
+Clear-Host
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Delta%20Force/Delta%20Force/Input.ini" -File "$ConfigFolder1\Input.ini"
+Clear-Host
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Delta%20Force/Delta%20Force/UserSystemSetting.ini" -File "$ConfigFolder1\UserSystemSetting.ini"
+Clear-Host
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Delta%20Force/Delta%20Force/UserSystemSettingHD.ini" -File "$ConfigFolder1\UserSystemSettingHD.ini"
+Clear-Host
+Write-Host "Delta Force config applied . . ."
+Write-Host ""
+Write-Host "Try -dx11 launch option in game launcher"
 $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
