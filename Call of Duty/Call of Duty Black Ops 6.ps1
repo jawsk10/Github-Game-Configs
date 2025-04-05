@@ -116,8 +116,18 @@ $input = Read-Host -Prompt "RendererWorkerCount"
 (Get-Content $path1) -replace "\$", $input | Out-File $path1
 (Get-Content $path2) -replace "\$", $input | Out-File $path2
 # convert files to utf8
-Set-Content -Path "$env:TEMP\s.1.0.cod24.txt0" -Value (Get-Content -Path "$env:TEMP\s.1.0.cod24.txt0" -Raw) -Encoding utf8
-Set-Content -Path "$env:TEMP\s.1.0.cod24.txt1" -Value (Get-Content -Path "$env:TEMP\s.1.0.cod24.txt1" -Raw) -Encoding utf8
+$content = Get-Content -Path "$env:TEMP\s.1.0.cod24.txt0" -Raw
+$filePath = "$env:TEMP\s.1.0.cod24.txt0"
+$encoding = New-Object System.Text.UTF8Encoding $false
+$writer = [System.IO.StreamWriter]::new($filePath, $false, $encoding)
+$writer.Write($content)
+$writer.Close()
+$content = Get-Content -Path "$env:TEMP\s.1.0.cod24.txt1" -Raw
+$filePath = "$env:TEMP\s.1.0.cod24.txt1"
+$encoding = New-Object System.Text.UTF8Encoding $false
+$writer = [System.IO.StreamWriter]::new($filePath, $false, $encoding)
+$writer.Write($content)
+$writer.Close()
 # move config files
 Copy-Item -Path "$env:TEMP\s.1.0.cod24.txt0" -Destination "$env:USERPROFILE\Documents\Call of Duty\players\s.1.0.cod24.txt0" -Force -ErrorAction SilentlyContinue | Out-Null
 Copy-Item -Path "$env:TEMP\s.1.0.cod24.txt0" -Destination "$env:USERPROFILE\OneDrive\Documents\Call of Duty\players\s.1.0.cod24.txt0" -Force -ErrorAction SilentlyContinue | Out-Null
