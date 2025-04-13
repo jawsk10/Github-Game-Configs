@@ -119,6 +119,8 @@ Expand-Archive "$env:TEMP\WZBO6MW2MW3\players.zip" -DestinationPath "$env:TEMP\W
 Clear-Host
 # inspector import
 Write-Host "Importing Inspector Profiles: Rebar Off. Please wait . . ."
+Write-Host ""
+Write-Host "AMD GPU users, ignore error & press 'OK' x3"
 # unblock drs files
 $path = "C:\ProgramData\NVIDIA Corporation\Drs"
 Get-ChildItem -Path $path -Recurse | Unblock-File
@@ -128,6 +130,7 @@ Start-Process -wait "$env:TEMP\WZBO6MW2MW3\RebarOffInspector\Inspector.exe" -arg
 Timeout /T 3 | Out-Null
 Start-Process -wait "$env:TEMP\WZBO6MW2MW3\RebarOffInspector\Inspector.exe" -args "$env:TEMP\WZBO6MW2MW3\RebarOffInspector\WZBO6.nip -silent"
 Timeout /T 3 | Out-Null
+Clear-Host
 # edit config files
 $options3cod22cst = "$env:TEMP\WZBO6MW2MW3\players\options.3.cod22.cst"
 $options4cod23cst = "$env:TEMP\WZBO6MW2MW3\players\options.4.cod23.cst"
