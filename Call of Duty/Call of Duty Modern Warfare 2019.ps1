@@ -94,7 +94,51 @@
     return $OpenFileDialog.FileName
     }
 
-# message
+# create config folder
+New-Item -Path "$env:USERPROFILE\Documents\Call of Duty Modern Warfare" -Name "players" -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
+New-Item -Path "$env:USERPROFILE\OneDrive\Documents\Call of Duty Modern Warfare" -Name "players" -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
 Clear-Host
-Write-Host "In Progress..."
-Pause
+
+# download config files
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Call%20of%20Duty/Call%20of%20Duty%20Modern%20Warfare%202019.zip" -File "$env:TEMP\2019.zip"
+Clear-Host
+
+# extract config files
+Expand-Archive "$env:TEMP\2019.zip" -DestinationPath "$env:TEMP\2019" -ErrorAction SilentlyContinue | Out-Null
+Clear-Host
+
+# edit config files
+$advoptionsini = "$env:TEMP\2019\players\adv_options.ini"
+
+# user input change rendererworkercount in config files
+Write-Host "Set RendererWorkerCount to cpu cores -1"
+Write-Host ""
+do {
+$input = Read-Host -Prompt "RendererWorkerCount"
+} while ([string]::IsNullOrWhiteSpace($input))
+(Get-Content $advoptionsini) -replace "\$", $input | Out-File $advoptionsini
+
+# convert adv_options.ini to utf8
+$content = Get-Content -Path "$env:TEMP\2019\players\adv_options.ini" -Raw
+$filePath = "$env:TEMP\2019\players\adv_options.ini"
+$encoding = New-Object System.Text.UTF8Encoding $false
+$writer = [System.IO.StreamWriter]::new($filePath, $false, $encoding)
+$writer.Write($content)
+$writer.Close()
+
+# install config files
+Copy-Item -Path "$env:TEMP\2019\players\*" -Destination "$env:USERPROFILE\Documents\Call of Duty Modern Warfare\players" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+Copy-Item -Path "$env:TEMP\2019\players\*" -Destination "$env:USERPROFILE\OneDrive\Documents\Call of Duty Modern Warfare\players" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+Clear-Host
+
+# cleanup
+Remove-Item "$env:TEMP\2019" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+Remove-Item "$env:TEMP\2019.zip" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+
+# message
+Write-Host "Call of Duty Modern Warfare 2019 config applied . . ."
+Write-Host ""
+Write-Host "Always select 'no' for 'Set Optimal Settings & Run In Safe Mode'"
+Write-Host ""
+Write-Host "Open game, in GRAPHICS select Restart Shaders Pre-Loading then reboot game"
+$null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
