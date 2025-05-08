@@ -95,6 +95,57 @@
     }
 
 # message
-Clear-Host
-Write-Host "In Progress..."
+Write-Host "Run game once to generate config location"
+Write-Host ""
 Pause
+Clear-Host
+
+# download config files
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Call%20of%20Duty/Call%20of%20Duty%20Black%20Ops%204.zip" -File "$env:TEMP\BO4.zip"
+Clear-Host
+
+# extract config files
+Expand-Archive "$env:TEMP\BO4.zip" -DestinationPath "$env:TEMP\BO4" -ErrorAction SilentlyContinue | Out-Null
+Clear-Host
+
+# edit config files
+$configini = "$env:TEMP\BO4\players\config.ini"
+
+# user input change rendererworkercount in config files
+Write-Host "Set RendererWorkerCount to cpu cores -1"
+Write-Host ""
+do {
+$input = Read-Host -Prompt "RendererWorkerCount"
+} while ([string]::IsNullOrWhiteSpace($input))
+(Get-Content $configini) -replace "\$", $input | Out-File $configini
+
+# convert configini to utf8
+$content = Get-Content -Path "$env:TEMP\BO4\players\config.ini" -Raw
+$filePath = "$env:TEMP\BO4\players\config.ini"
+$encoding = New-Object System.Text.UTF8Encoding $false
+$writer = [System.IO.StreamWriter]::new($filePath, $false, $encoding)
+$writer.Write($content)
+$writer.Close()
+Clear-Host
+
+# pick folder
+Write-Host "Find 'Call of Duty Black Ops 4' install folder:"
+Write-Host "In 'Call of Duty Black Ops 4\players' select 'YourID' folder:"
+$ConfigFolder1 = Show-ModernFilePicker -Mode Folder
+Clear-Host
+
+# install config files
+Copy-Item -Path "$env:TEMP\BO4\YourID\*" -Destination "$ConfigFolder1" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+$ConfigFolder1 = [System.IO.Path]::GetDirectoryName($ConfigFolder1)
+Copy-Item -Path "$env:TEMP\BO4\players\*" -Destination "$ConfigFolder1" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+Clear-Host
+
+# cleanup
+Remove-Item "$env:TEMP\BO4" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+Remove-Item "$env:TEMP\BO4.zip" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+
+# message
+Write-Host "Call of Duty Black Ops 4 config applied . . ."
+Write-Host ""
+Write-Host "Always select 'no' for 'Set Optimal Settings & Run In Safe Mode'"
+$null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
