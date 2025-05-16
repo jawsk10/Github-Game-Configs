@@ -101,16 +101,20 @@ New-Item -Path "$env:LOCALAPPDATA\FragPunk\Steam\Saved\Config" -Name "WindowsCli
 Clear-Host
 
 # download config files
-Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/The%20Finals/The%20Finals.zip" -File "$env:TEMP\The Finals.zip"
+Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Frag%20Punk/Frag%20Punk.zip" -File "$env:TEMP\Frag Punk.zip"
 Clear-Host
 
 # extract config files
-Expand-Archive "$env:TEMP\The Finals.zip" -DestinationPath "$env:TEMP\The Finals" -ErrorAction SilentlyContinue | Out-Null
+Expand-Archive "$env:TEMP\Frag Punk.zip" -DestinationPath "$env:TEMP\Frag Punk" -ErrorAction SilentlyContinue | Out-Null
 Clear-Host
 
 # install config files
-Copy-Item -Path "$env:TEMP\The Finals\GameUserSettings.ini" -Destination "$env:LOCALAPPDATA\Discovery\Saved\Config\WindowsClient" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
-Copy-Item -Path "$env:TEMP\The Finals\EmbarkOptionSaveGame.sav" -Destination "$env:LOCALAPPDATA\Discovery\Saved\SaveGames" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+Copy-Item -Path "$env:TEMP\Frag Punk\Engine.ini" -Destination "$env:LOCALAPPDATA\FragPunk\A50\Saved\Config\WindowsClient" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+Copy-Item -Path "$env:TEMP\Frag Punk\GameUserSettings.ini" -Destination "$env:LOCALAPPDATA\FragPunk\A50\Saved\Config\WindowsClient" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+Copy-Item -Path "$env:TEMP\Frag Punk\Engine.ini" -Destination "$env:LOCALAPPDATA\FragPunk\Epic\Saved\Config\WindowsClient" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+Copy-Item -Path "$env:TEMP\Frag Punk\GameUserSettings.ini" -Destination "$env:LOCALAPPDATA\FragPunk\Epic\Saved\Config\WindowsClient" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+Copy-Item -Path "$env:TEMP\Frag Punk\Engine.ini" -Destination "$env:LOCALAPPDATA\FragPunk\Steam\Saved\Config\WindowsClient" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+Copy-Item -Path "$env:TEMP\Frag Punk\GameUserSettings.ini" -Destination "$env:LOCALAPPDATA\FragPunk\Steam\Saved\Config\WindowsClient" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
 Clear-Host
 
 # cleanup
