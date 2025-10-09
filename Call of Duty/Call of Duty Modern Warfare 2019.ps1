@@ -93,6 +93,12 @@
     }
     return $OpenFileDialog.FileName
     }
+	
+# message
+Write-Host "Run game once to generate config location"
+Write-Host ""
+Pause
+Clear-Host
 
 # create config folder
 New-Item -Path "$env:USERPROFILE\Documents\Call of Duty Modern Warfare" -Name "players" -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
