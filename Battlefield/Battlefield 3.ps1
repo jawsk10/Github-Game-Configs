@@ -94,6 +94,12 @@
     return $OpenFileDialog.FileName
     }
 
+# message
+Write-Host "Run game once to generate config location"
+Write-Host ""
+Pause
+Clear-Host
+
 # create config folder
 New-Item -Path "$env:USERPROFILE\Documents\Battlefield 3" -Name "settings" -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
 New-Item -Path "$env:USERPROFILE\OneDrive\Documents\Battlefield 3" -Name "settings" -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
