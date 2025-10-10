@@ -94,6 +94,12 @@
     return $OpenFileDialog.FileName
     }
 
+# message
+Write-Host "Run game once to generate config location"
+Write-Host ""
+Pause
+Clear-Host
+
 # create config folders
 New-Item -Path "$env:USERPROFILE\Documents\Battlefield 6\settings" -Name "steam" -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
 New-Item -Path "$env:USERPROFILE\Documents\Battlefield 6\settings" -Name "epic" -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
