@@ -108,19 +108,29 @@ Clear-Host
 Expand-Archive "$env:TEMP\Battlefield6.zip" -DestinationPath "$env:TEMP\Battlefield6" -ErrorAction SilentlyContinue | Out-Null
 Clear-Host
 
-# install config files
-Copy-Item "$env:TEMP\Battlefield6\PROFSAVE_profile" -Destination "$env:USERPROFILE\Documents\Battlefield 6\settings" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
-Clear-Host
-Copy-Item "$env:TEMP\Battlefield6\PROFSAVE_profile" -Destination "$env:USERPROFILE\Documents\Battlefield 6\settings\steam" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
-Clear-Host
-Copy-Item "$env:TEMP\Battlefield6\PROFSAVE_profile" -Destination "$env:USERPROFILE\Documents\Battlefield 6\settings\epic" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
-Clear-Host
-Copy-Item "$env:TEMP\Battlefield6\PROFSAVE_profile" -Destination "$env:USERPROFILE\OneDrive\Documents\Battlefield 6\settings" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
-Clear-Host
-Copy-Item "$env:TEMP\Battlefield6\PROFSAVE_profile" -Destination "$env:USERPROFILE\OneDrive\Documents\Battlefield 6\settings\steam" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
-Clear-Host
-Copy-Item "$env:TEMP\Battlefield6\PROFSAVE_profile" -Destination "$env:USERPROFILE\OneDrive\Documents\Battlefield 6\settings\epic" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
-Clear-Host
+# replace config file only if destination file exists
+function Replace-IfExists {
+    param(
+        [string]$source,
+        [string]$destination
+    )
+    if (Test-Path $destination) {
+        Copy-Item $source -Destination $destination -Force -ErrorAction SilentlyContinue | Out-Null
+    }
+}
+
+$targets = @(
+    "$env:USERPROFILE\Documents\Battlefield 6\settings\PROFSAVE_profile",
+    "$env:USERPROFILE\Documents\Battlefield 6\settings\steam\PROFSAVE_profile",
+    "$env:USERPROFILE\Documents\Battlefield 6\settings\epic\PROFSAVE_profile",
+    "$env:USERPROFILE\OneDrive\Documents\Battlefield 6\settings\PROFSAVE_profile",
+    "$env:USERPROFILE\OneDrive\Documents\Battlefield 6\settings\steam\PROFSAVE_profile",
+    "$env:USERPROFILE\OneDrive\Documents\Battlefield 6\settings\epic\PROFSAVE_profile"
+)
+
+foreach ($target in $targets) {
+    Replace-IfExists "$env:TEMP\Battlefield6\PROFSAVE_profile" $target
+}
 
 # pick folder
 Write-Host "Select Battlefield 6 install folder:"
@@ -162,6 +172,5 @@ Write-Host ""
 Write-Host "- HAGS off"
 Write-Host "- NVIDIA framegen"
 Write-Host "- RIVATUNERS async fps cap"
-Write-Host "- NVIDIA uncap fps, remove reflex files 'sl.reflex.dll' 'sl.pcl.dll'"
-
+Write-Host "- NVIDIA uncap fps, remove reflex files 'sl.reflex.dll' & 'sl.pcl.dll'"
 $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
