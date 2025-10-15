@@ -100,13 +100,6 @@ Write-Host ""
 Pause
 Clear-Host
 
-# create config folders
-New-Item -Path "$env:USERPROFILE\Documents\Battlefield 6\settings" -Name "steam" -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
-New-Item -Path "$env:USERPROFILE\Documents\Battlefield 6\settings" -Name "epic" -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
-New-Item -Path "$env:USERPROFILE\OneDrive\Documents\Battlefield 6\settings" -Name "steam" -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
-New-Item -Path "$env:USERPROFILE\OneDrive\Documents\Battlefield 6\settings" -Name "epic" -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
-Clear-Host
-
 # download config files
 Get-FileFromWeb -URL "https://github.com/FR33THYFR33THY/Github-Game-Configs/raw/refs/heads/main/Battlefield/Battlefield%206.zip" -File "$env:TEMP\Battlefield6.zip"
 Clear-Host
@@ -117,10 +110,15 @@ Clear-Host
 
 # install config files
 Copy-Item "$env:TEMP\Battlefield6\PROFSAVE_profile" -Destination "$env:USERPROFILE\Documents\Battlefield 6\settings" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+Clear-Host
 Copy-Item "$env:TEMP\Battlefield6\PROFSAVE_profile" -Destination "$env:USERPROFILE\Documents\Battlefield 6\settings\steam" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+Clear-Host
 Copy-Item "$env:TEMP\Battlefield6\PROFSAVE_profile" -Destination "$env:USERPROFILE\Documents\Battlefield 6\settings\epic" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+Clear-Host
 Copy-Item "$env:TEMP\Battlefield6\PROFSAVE_profile" -Destination "$env:USERPROFILE\OneDrive\Documents\Battlefield 6\settings" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+Clear-Host
 Copy-Item "$env:TEMP\Battlefield6\PROFSAVE_profile" -Destination "$env:USERPROFILE\OneDrive\Documents\Battlefield 6\settings\steam" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+Clear-Host
 Copy-Item "$env:TEMP\Battlefield6\PROFSAVE_profile" -Destination "$env:USERPROFILE\OneDrive\Documents\Battlefield 6\settings\epic" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
 Clear-Host
 
@@ -156,4 +154,14 @@ Clear-Host
 
 # message
 Write-Host "Battlefield 6 config applied . . ."
+Write-Host ""
+Write-Host "-----------------------------------------------------"
+Write-Host "POWER USERS & HIGH END MACHINES ONLY OR TEST YOURSELF"
+Write-Host "-----------------------------------------------------"
+Write-Host ""
+Write-Host "- HAGS off"
+Write-Host "- NVIDIA framegen"
+Write-Host "- RIVATUNERS async fps cap"
+Write-Host "- NVIDIA uncap fps, remove reflex files 'sl.reflex.dll' 'sl.pcl.dll'"
+
 $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
