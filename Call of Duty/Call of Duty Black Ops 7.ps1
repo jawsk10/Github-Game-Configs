@@ -109,8 +109,8 @@ Expand-Archive "$env:TEMP\BO7.zip" -DestinationPath "$env:TEMP\BO7" -ErrorAction
 Clear-Host
 
 # edit config files
-$s10cod25txt0 = "$env:TEMP\BO7\players\s.1.0.bt.cod25.txt0"
-$s10cod25txt1 = "$env:TEMP\BO7\players\s.1.0.bt.cod25.txt1"
+$s10cod25txt0 = "$env:TEMP\BO7\players\s.1.0.cod25.txt0"
+$s10cod25txt1 = "$env:TEMP\BO7\players\s.1.0.cod25.txt1"
 
 # user input change rendererworkercount in config files
 Write-Host "Set RendererWorkerCount to cpu cores -1"
@@ -121,17 +121,17 @@ $input = Read-Host -Prompt "RendererWorkerCount"
 (Get-Content $s10cod25txt0) -replace "\$", $input | Out-File $s10cod25txt0
 (Get-Content $s10cod25txt1) -replace "\$", $input | Out-File $s10cod25txt1
 
-# convert s.1.0.cod24.txt0 to utf8
-$content = Get-Content -Path "$env:TEMP\BO7\players\s.1.0.bt.cod25.txt0" -Raw
-$filePath = "$env:TEMP\BO7\players\s.1.0.bt.cod25.txt0"
+# convert s.1.0.cod25.txt0 to utf8
+$content = Get-Content -Path "$env:TEMP\BO7\players\s.1.0.cod25.txt0" -Raw
+$filePath = "$env:TEMP\BO7\players\s.1.0.cod25.txt0"
 $encoding = New-Object System.Text.UTF8Encoding $false
 $writer = [System.IO.StreamWriter]::new($filePath, $false, $encoding)
 $writer.Write($content)
 $writer.Close()
 
-# convert s.1.0.cod24.txt1 to utf8
-$content = Get-Content -Path "$env:TEMP\BO7\players\s.1.0.bt.cod25.txt1" -Raw
-$filePath = "$env:TEMP\BO7\players\s.1.0.bt.cod25.txt1"
+# convert s.1.0.cod25.txt1 to utf8
+$content = Get-Content -Path "$env:TEMP\BO7\players\s.1.0.cod25.txt1" -Raw
+$filePath = "$env:TEMP\BO7\players\s.1.0.cod25.txt1"
 $encoding = New-Object System.Text.UTF8Encoding $false
 $writer = [System.IO.StreamWriter]::new($filePath, $false, $encoding)
 $writer.Write($content)
